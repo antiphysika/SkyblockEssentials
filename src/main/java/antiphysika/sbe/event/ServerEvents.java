@@ -13,12 +13,19 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 
 import java.util.List;
+import java.util.Objects;
 
 public class ServerEvents
 {
+  private static final List<String> RIGHT_CLICK_BLOCKS = List.of(
+    RegistryUtil.getRegisteredName(Blocks.DIRT),
+    RegistryUtil.getRegisteredName(Blocks.GRASS_BLOCK)
+  );
+
   public static void onRightClickBlock (final PlayerInteractEvent.RightClickBlock event)
   {
     // Require player to be sneaking
@@ -35,9 +42,12 @@ public class ServerEvents
       return;
 
     Level level = event.getLevel();
-    Block trgettedBlock = level.getBlockState(event.getPos()).getBlock();
+    if (Objects.requireNonNull(level.getServer()).getTickCount() % 10 != 0) // Twice per second
+      return;
 
+    Block trgettedBlock = level.getBlockState(event.getPos()).getBlock();
     final String regName = RegistryUtil.getRegisteredName(trgettedBlock);
+
     if (!regName.equals("minecraft:grass_block"))
       return;
 

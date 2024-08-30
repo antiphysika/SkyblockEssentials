@@ -4,9 +4,9 @@
 
 package antiphysika.sbe;
 
+import antiphysika.sbe.registry.Registrar;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
@@ -23,8 +23,11 @@ public class SkyblockEssentials extends SkyblockEssentialsBase
   public static final String MOD_ID = "skyblockessentials";
   private static final Logger LOGGER = LogUtils.getLogger();
 
-  public SkyblockEssentials (IEventBus bus, ModContainer container)
+  public SkyblockEssentials (IEventBus bus)
   {
+    // Register items
+    Registrar.register(bus);
+
     // Register ourselves on the game bus
     NeoForge.EVENT_BUS.register(this);
   }

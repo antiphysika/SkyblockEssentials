@@ -17,12 +17,9 @@ public class LevelUtil
 
   public static void spawnItemStack (Level level, Player player, ItemStack itemStack)
   {
-    double x = player.getX();
-    double y = player.getY();
-    double z = player.getZ();
-
-    level.addFreshEntity(new ItemEntity(level, x, y, z, itemStack));
-    LOGGER.debug("Spawned item entity: {}", itemStack.toString());
+    level.addFreshEntity(
+      new ItemEntity(level, player.getX(), player.getY(), player.getZ(), itemStack)
+    );
   }
 }
 
