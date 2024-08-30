@@ -4,8 +4,6 @@
 
 package antiphysika.sbe;
 
-import net.minecraft.resources.ResourceLocation;
-
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
@@ -25,14 +23,8 @@ public class SkyblockEssentials extends SkyblockEssentialsBase
   public static final String MOD_ID = "skyblockessentials";
   private static final Logger LOGGER = LogUtils.getLogger();
 
-  // Location of loot table to roll
-  public static ResourceLocation RIGHT_CLICK_LOOT_TABLE = location("right_click_stone");
-
   public SkyblockEssentials (IEventBus bus, ModContainer container)
   {
-    // Add listener for FMLCommonSetupEvent event
-    bus.addListener(this::initCommon);
-
     // Register ourselves on the game bus
     NeoForge.EVENT_BUS.register(this);
   }
