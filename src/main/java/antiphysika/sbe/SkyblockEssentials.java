@@ -4,7 +4,6 @@
 
 package antiphysika.sbe;
 
-import antiphysika.sbe.event.ServerEvents;
 import net.minecraft.resources.ResourceLocation;
 
 import net.neoforged.bus.api.IEventBus;
@@ -17,6 +16,8 @@ import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 
 import org.slf4j.Logger;
 import com.mojang.logging.LogUtils;
+
+import antiphysika.sbe.event.ServerEvents;
 
 @Mod(SkyblockEssentials.MOD_ID)
 public class SkyblockEssentials extends SkyblockEssentialsBase
@@ -48,11 +49,8 @@ public class SkyblockEssentials extends SkyblockEssentialsBase
   @SubscribeEvent
   public void onRightClickBlock (final PlayerInteractEvent.RightClickBlock event)
   {
-    // Stop here unless we're running on the server
-    if (event.getLevel().isClientSide())
-      return;
-
-    ServerEvents.onRightClickBlock(event);
+    if (!event.getLevel().isClientSide())
+      ServerEvents.onRightClickBlock(event);
   }
 }
 
