@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "skyblockessentials:item/dirt_chunk"
+  }
+}
