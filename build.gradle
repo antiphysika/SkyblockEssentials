@@ -104,9 +104,18 @@ configurations {
 }
 
 dependencies {
-  System.out.println(String.format("jei_enabled == %s", jei_enabled));
-  System.out.println(String.format("jade_enabled == %s", jade_enabled));
-  System.out.println(String.format("xaeros_minimap_enabled == %s", xaeros_minimap_enabled));
+  // Hard dependencies
+  //
+
+  // Minion
+  implementation "curse.maven:minion-1092246:${minion_file_id}"
+
+  // Mod-dev QoL dependencies
+  //
+
+  System.out.println(String.format("[QoL] jei_enabled == %s", jei_enabled));
+  System.out.println(String.format("[QoL] jade_enabled == %s", jade_enabled));
+  System.out.println(String.format("[QoL] xaeros_minimap_enabled == %s", xaeros_minimap_enabled));
 
   // JEI
   if (jei_enabled == "true") {
@@ -134,6 +143,7 @@ var generateModMetadata = tasks.register("generateModMetadata", ProcessResources
     neo_version: neo_version,
     neo_version_range: neo_version_range,
     loader_version_range: loader_version_range,
+    minion_version_range: minion_version_range,
     mod_id: mod_id,
     mod_name: mod_name,
     mod_license: mod_license,

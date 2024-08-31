@@ -34,5 +34,12 @@ description='''${mod_description}'''
   ordering="NONE"
   side="BOTH"
 
+[[dependencies."${mod_id}"]]
+  modId="minion"
+  type="required"
+  versionRange="${minion_version_range}"
+  ordering="NONE"
+  side="BOTH"
+
 #
 # vim: ts=2 sw=2 et fdm=marker :
