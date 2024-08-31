@@ -5,6 +5,8 @@
 package antiphysika.sbe;
 
 import antiphysika.sbe.registry.Registrar;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
@@ -44,8 +46,20 @@ public class SkyblockEssentials extends SkyblockEssentialsBase
   @SubscribeEvent
   public void onRightClickBlock (final PlayerInteractEvent.RightClickBlock event)
   {
+    boolean playSound = false;
+
     if (!event.getLevel().isClientSide())
-      ServerEvents.onRightClickBlock(event);
+      playSound = ServerEvents.onRightClickBlock(event);
+
+    if (!playSound)
+      return;
+
+    event.getLevel().playSound(
+      null,
+      event.getPos(),
+      SoundEvents.GRAVEL_BREAK,
+      SoundSource.BLOCKS
+    );
   }
 }
 
